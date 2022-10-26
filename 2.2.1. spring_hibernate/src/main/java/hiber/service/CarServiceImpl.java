@@ -17,8 +17,8 @@ public class CarServiceImpl implements CarService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Car> listCars() {
-        return carDao.carList();
+    public List<Car> getCarList() {
+        return carDao.getCarList();
     }
 
     @Transactional(readOnly = true)

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CarDao {
 
-    public List<Car> carList();
+    public List<Car> getCarList();
 
     User getUserByNameSeries(String model, int series);
 

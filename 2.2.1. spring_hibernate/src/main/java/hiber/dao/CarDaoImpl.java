@@ -15,12 +15,17 @@ public class CarDaoImpl implements CarDao {
 
     private final String hql = "from User user where user.car.model = :model and user.car.series = :series";
 
+
+    private final SessionFactory sessionFactory;
+
     @Autowired
-    private SessionFactory sessionFactory;
+    public CarDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Car> carList() {
+    public List<Car> getCarList() {
         List<Car> carList = sessionFactory.getCurrentSession().createQuery("from Car ").getResultList();
         return carList;
     }

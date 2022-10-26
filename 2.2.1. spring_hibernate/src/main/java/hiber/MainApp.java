@@ -7,12 +7,11 @@ import hiber.service.CarService;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import javax.persistence.NoResultException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class MainApp {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -29,12 +28,12 @@ public class MainApp {
         Car car3 = new Car("car3", 13);
         Car car4 = new Car("car4", 14);
 
-        userService.add(user1.setCar(car1).setUser(user1));
-        userService.add(user2.setCar(car2).setUser(user2));
-        userService.add(user3.setCar(car3).setUser(user3));
-        userService.add(user4.setCar(car4).setUser(user4));
+        userService.addUser(user1.setCar(car1).setUser(user1));
+        userService.addUser(user2.setCar(car2).setUser(user2));
+        userService.addUser(user3.setCar(car3).setUser(user3));
+        userService.addUser(user4.setCar(car4).setUser(user4));
 
-        List<User> users = userService.listUsers();
+        List<User> users = userService.getListUsers();
         for (User user : users) {
             System.out.println("Id = " + user.getId());
             System.out.println("First Name = " + user.getFirstName());
@@ -43,7 +42,6 @@ public class MainApp {
             System.out.println("car = " + user.getCar());
             System.out.println();
         }
-
 
         // user by car
         System.out.println(carService.getUserByCar(car1));
